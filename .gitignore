@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Secrets / credentials
+*.pem
+*.key
+.env
+.env.*
+
+# Local archives
+*.tar.gz
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

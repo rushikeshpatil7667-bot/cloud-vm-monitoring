@@ -1,0 +1,40 @@
+groups:
+  - name: cloud_vm_alerts
+    interval: 10s
+    rules:
+
+      - alert: HighCPUUsage
+        expr: system_cpu_usage_percent > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage has exceeded 80% for more than 2 minutes."
+
+      - alert: HighMemoryUsage
+        expr: system_memory_usage_percent > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage detected"
+          description: "Memory usage has exceeded 80% for more than 2 minutes."
+
+      - alert: HighDiskUsage
+        expr: system_disk_usage_percent > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High disk usage detected"
+          description: "Disk usage has exceeded 80% for more than 2 minutes."
+
+      - alert: MonitoringTargetDown
+        expr: up{job="cloud-vm-python-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Monitoring exporter is down"
+          description: "Prometheus cannot reach the Python monitoring exporter."
